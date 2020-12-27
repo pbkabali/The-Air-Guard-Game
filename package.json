@@ -4,7 +4,7 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "main": "index.js",
   "scripts": {
-    "start": "http-server ./dist",
+    "start": "http-server -c-1",
     "test": "jest",
     "watch": "webpack --watch",
     "dev": "webpack --mode development",
