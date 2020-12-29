@@ -1,3 +1,5 @@
+import { ScrollingBackground } from "./Entities";
+
 class SceneGameOver extends Phaser.Scene {
   constructor() {
     super({ key: "SceneGameOver" });
@@ -72,3 +74,5 @@ class SceneGameOver extends Phaser.Scene {
     }
   }
 }
+
+export default SceneGameOver;

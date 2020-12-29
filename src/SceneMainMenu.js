@@ -1,20 +1,32 @@
+import { ScrollingBackground } from "./Entities";
+import sprBg0 from "./assets/sprBg0.png";
+import sprBg1 from "./assets/sprBg1.png";
+import sprBtnPlay from "./assets/sprBtnPlay.png";
+import sprBtnPlayHover from "./assets/sprBtnPlayHover.png";
+import sprBtnPlayDown from "./assets/sprBtnPlayDown.png";
+import sprBtnRestart from "./assets/sprBtnRestart.png";
+import sprBtnRestartHover from "./assets/sprBtnRestartHover.png";
+import sprBtnRestartDown from "./assets/sprBtnRestartDown.png";
+import sndBtnOver from "./assets/sndBtnOver.wav";
+import sndBtnDown from "./assets/sndBtnDown.wav";
+
 class SceneMainMenu extends Phaser.Scene {
   constructor() {
     super({ key: "SceneMainMenu" });
   }
 
   preload() {
-    this.load.image("sprBg0", "./assets/sprBg0.png");
-    this.load.image("sprBg1", "./assets/sprBg1.png");
-    this.load.image("sprBtnPlay", "./assets/sprBtnPlay.png");
-    this.load.image("sprBtnPlayHover", "./assets/sprBtnPlayHover.png");
-    this.load.image("sprBtnPlayDown", "./assets/sprBtnPlayDown.png");
-    this.load.image("sprBtnRestart", "./assets/sprBtnRestart.png");
-    this.load.image("sprBtnRestartHover", "./assets/sprBtnRestartHover.png");
-    this.load.image("sprBtnRestartDown", "./assets/sprBtnRestartDown.png");
+    this.load.image("sprBg0", sprBg0);
+    this.load.image("sprBg1", sprBg1);
+    this.load.image("sprBtnPlay", sprBtnPlay);
+    this.load.image("sprBtnPlayHover", sprBtnPlayHover);
+    this.load.image("sprBtnPlayDown", sprBtnPlayDown);
+    this.load.image("sprBtnRestart", sprBtnRestart);
+    this.load.image("sprBtnRestartHover", sprBtnRestartHover);
+    this.load.image("sprBtnRestartDown", sprBtnRestartDown);
 
-    this.load.audio("sndBtnOver", "./assets/sndBtnOver.wav");
-    this.load.audio("sndBtnDown", "./assets/sndBtnDown.wav");
+    this.load.audio("sndBtnOver", sndBtnOver);
+    this.load.audio("sndBtnDown", sndBtnDown);
   }
 
   create() {
@@ -92,3 +104,5 @@ class SceneMainMenu extends Phaser.Scene {
     }
   }
 }
+
+export default SceneMainMenu;

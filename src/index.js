@@ -1,3 +1,7 @@
+import SceneMainMenu from "./SceneMainMenu";
+import SceneMain from "./SceneMain";
+import SceneGameOver from "./SceneGameOver";
+
 var config = {
   type: Phaser.AUTO,
   width: 480,

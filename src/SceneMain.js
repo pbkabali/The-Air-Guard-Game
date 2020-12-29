@@ -1,31 +1,49 @@
+import Player, {
+  ScrollingBackground,
+  CarrierShip,
+  ChaserShip,
+  GunShip,
+} from "./Entities";
+
+import sprExplosion from "./assets/sprExplosion.png";
+import sprEnemy0 from "./assets/sprEnemy0.png";
+import sprEnemy1 from "./assets/sprEnemy1.png";
+import sprEnemy2 from "./assets/sprEnemy2.png";
+import sprLaserEnemy0 from "./assets/sprLaserEnemy0.png";
+import sprLaserPlayer from "./assets/sprLaserPlayer.png";
+import sprPlayer1 from "./assets/sprPlayer.png";
+import sndExplode0 from "./assets/sndExplode0.wav";
+import sndExplode1 from "./assets/sndExplode1.wav";
+import sndLaser from "./assets/sndLaser.wav";
+
 class SceneMain extends Phaser.Scene {
   constructor() {
     super({ key: "SceneMain" });
   }
 
   preload() {
-    this.load.spritesheet("sprExplosion", "./assets/sprExplosion.png", {
+    this.load.spritesheet("sprExplosion", sprExplosion, {
       frameWidth: 32,
       frameHeight: 32,
     });
-    this.load.spritesheet("sprEnemy0", "./assets/sprEnemy0.png", {
+    this.load.spritesheet("sprEnemy0", sprEnemy0, {
       frameWidth: 16,
       frameHeight: 16,
     });
-    this.load.image("sprEnemy1", "./assets/sprEnemy1.png");
-    this.load.spritesheet("sprEnemy2", "./assets/sprEnemy2.png", {
+    this.load.image("sprEnemy1", sprEnemy1);
+    this.load.spritesheet("sprEnemy2", sprEnemy2, {
       frameWidth: 16,
       frameHeight: 16,
     });
-    this.load.image("sprLaserEnemy0", "./assets/sprLaserEnemy0.png");
-    this.load.image("sprLaserPlayer", "./assets/sprLaserPlayer.png");
-    this.load.spritesheet("sprPlayer", "./assets/sprPlayer.png", {
+    this.load.image("sprLaserEnemy0", sprLaserEnemy0);
+    this.load.image("sprLaserPlayer", sprLaserPlayer);
+    this.load.spritesheet("sprPlayer", sprPlayer1, {
       frameWidth: 16,
       frameHeight: 16,
     });
-    this.load.audio("sndExplode0", "./assets/sndExplode0.wav");
-    this.load.audio("sndExplode1", "./assets/sndExplode1.wav");
-    this.load.audio("sndLaser", "./assets/sndLaser.wav");
+    this.load.audio("sndExplode0", sndExplode0);
+    this.load.audio("sndExplode1", sndExplode1);
+    this.load.audio("sndLaser", sndLaser);
   }
 
   getEnemiesByType(type) {
@@ -257,3 +275,5 @@ class SceneMain extends Phaser.Scene {
     }
   }
 }
+
+export default SceneMain;
