@@ -4,8 +4,8 @@ import GameOver from "./scenes/gameOver";
 
 var config = {
   type: Phaser.AUTO,
-  width: 480,
-  height: 640,
+  width: window.innerWidth,
+  height: window.innerHeight,
   backgroundColor: "black",
   physics: {
     default: "arcade",
@@ -17,3 +17,5 @@ var config = {
   pixelArt: true,
   roundPixels: true,
 };
+
+var game = new Phaser.Game(config);
