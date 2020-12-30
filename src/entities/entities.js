@@ -19,6 +19,9 @@ class Player extends Entity {
   constructor(scene, x, y, key) {
     super(scene, x, y, key);
     this.setData("speed", 160);
+    this.setData("isShooting", false);
+    this.setData("timerShootDelay", 50);
+    this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
   }
 
   moveLeft() {
@@ -38,6 +41,31 @@ class Player extends Entity {
 
     this.x = Phaser.Math.Clamp(this.x, 0, this.scene.game.config.width);
     this.y = Phaser.Math.Clamp(this.y, 0, this.scene.game.config.height);
+
+    if (this.getData("isShooting")) {
+      if (this.getData("timerShootTick") < this.getData("timerShootDelay")) {
+        this.setData("timerShootTick", this.getData("timerShootTick") + 1);
+      } else {
+        const missile = new PlayerMissile(
+          this.scene,
+          this.x,
+          this.y,
+          "playerMissile"
+        );
+        missile.setScale(0.05);
+        this.scene.playerMissiles.add(missile);
+
+        // this.scene.sfx.laser.play();
+        this.setData("timerShootTick", 0);
+      }
+    }
+  }
+}
+
+class PlayerMissile extends Entity {
+  constructor(scene, x, y, key) {
+    super(scene, x, y, key);
+    this.body.velocity.y = -200;
   }
 }
 

@@ -1,6 +1,7 @@
 import bg from "../assets/full-bg.png";
 import airplane from "../assets/airplan.png";
 import launcher from "../assets/launcher.png";
+import missile1 from "../assets/Missile04N.png";
 import Player, { StrayPlane } from "../entities/entities";
 
 class GamePlay extends Phaser.Scene {
@@ -12,6 +13,7 @@ class GamePlay extends Phaser.Scene {
     this.load.image("bg", bg);
     this.load.image("airplane", airplane);
     this.load.image("rocketLauncher", launcher);
+    this.load.image("playerMissile", missile1);
   }
 
   create() {
@@ -23,6 +25,7 @@ class GamePlay extends Phaser.Scene {
     bg.setScale(0.5);
 
     this.strayPlanes = this.add.group();
+    this.playerMissiles = this.add.group();
 
     this.time.addEvent({
       delay: 500,
@@ -61,6 +64,16 @@ class GamePlay extends Phaser.Scene {
       this.player.moveLeft();
     } else if (this.cursors.right.isDown) {
       this.player.moveRight();
+    }
+
+    if (this.cursors.up.isDown) {
+      this.player.setData("isShooting", true);
+    } else {
+      this.player.setData(
+        "timerShootTick",
+        this.player.getData("timerShootDelay") - 1
+      );
+      this.player.setData("isShooting", false);
     }
   }
 }
