@@ -3,6 +3,7 @@ import airplane from "../assets/airplane.png";
 import launcher from "../assets/launcher.png";
 import missile1 from "../assets/Missile04N.png";
 import sprExplosion from "../assets/sprExplosion.png";
+import sndExplode from "../assets/sndExplode1.wav";
 import applyFrustumCulling from "../helpers/frustumCulling";
 import Player, { StrayPlane } from "../helpers/entities";
 
@@ -20,6 +21,7 @@ class GamePlay extends Phaser.Scene {
     this.load.image("airplane", airplane);
     this.load.image("rocketLauncher", launcher);
     this.load.image("playerMissile", missile1);
+    this.load.audio("sndExplode", sndExplode);
   }
 
   create() {
@@ -29,6 +31,10 @@ class GamePlay extends Phaser.Scene {
       frameRate: 20,
       repeat: 0,
     });
+
+    this.sfx = {
+      explosion: this.sound.add("sndExplode"),
+    };
 
     const bg = this.add.image(
       this.game.config.width / 2,

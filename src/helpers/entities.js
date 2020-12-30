@@ -15,9 +15,10 @@ export class StrayPlane extends Entity {
 
   explode() {
     this.setTexture("sprExplosion");
-    this.body.setVelocity(-100, 10);
+    this.body.setVelocity(-150, 0);
     this.setScale(1);
     this.play("sprExplosion");
+    this.scene.sfx.explosion.play();
     this.on(
       "animationcomplete",
       function () {
