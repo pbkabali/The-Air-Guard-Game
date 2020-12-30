@@ -1,7 +1,8 @@
 import bg from "../assets/full-bg.png";
-import airplane from "../assets/airplan.png";
+import airplane from "../assets/airplane.png";
 import launcher from "../assets/launcher.png";
 import missile1 from "../assets/Missile04N.png";
+import sprExplosion from "../assets/sprExplosion.png";
 import applyFrustumCulling from "../helpers/frustumCulling";
 import Player, { StrayPlane } from "../helpers/entities";
 
@@ -11,6 +12,10 @@ class GamePlay extends Phaser.Scene {
   }
 
   preload() {
+    this.load.spritesheet("sprExplosion", sprExplosion, {
+      frameWidth: 32,
+      frameHeight: 32,
+    });
     this.load.image("bg", bg);
     this.load.image("airplane", airplane);
     this.load.image("rocketLauncher", launcher);
@@ -18,6 +23,13 @@ class GamePlay extends Phaser.Scene {
   }
 
   create() {
+    const exp = this.anims.create({
+      key: "sprExplosion",
+      frames: this.anims.generateFrameNumbers("sprExplosion"),
+      frameRate: 20,
+      repeat: 0,
+    });
+
     const bg = this.add.image(
       this.game.config.width / 2,
       this.game.config.height / 2,
@@ -42,7 +54,7 @@ class GamePlay extends Phaser.Scene {
           200,
           500
         );
-        strayPlane.setScale(Phaser.Math.Between(5, 20) * 0.01);
+        strayPlane.setScale(Phaser.Math.Between(5, 20) * 0.05);
         this.strayPlanes.add(strayPlane);
       },
       callbackScope: this,
@@ -63,7 +75,7 @@ class GamePlay extends Phaser.Scene {
       this.strayPlanes,
       function (missile, plane) {
         if (plane) {
-          plane.explode(true);
+          plane.explode();
           missile.destroy();
         }
       }

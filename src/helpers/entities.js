@@ -14,7 +14,17 @@ export class StrayPlane extends Entity {
   }
 
   explode() {
-    this.destroy();
+    this.setTexture("sprExplosion");
+    this.body.setVelocity(-100, 10);
+    this.setScale(1);
+    this.play("sprExplosion");
+    this.on(
+      "animationcomplete",
+      function () {
+        this.destroy();
+      },
+      this
+    );
   }
 }
 
