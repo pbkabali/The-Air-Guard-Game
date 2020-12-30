@@ -56,12 +56,11 @@ class GamePlay extends Phaser.Scene {
   }
 
   update() {
+    this.player.update();
     if (this.cursors.left.isDown) {
       this.player.moveLeft();
     } else if (this.cursors.right.isDown) {
       this.player.moveRight();
-    } else {
-      this.player.stayStill();
     }
   }
 }
