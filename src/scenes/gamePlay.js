@@ -2,7 +2,8 @@ import bg from "../assets/full-bg.png";
 import airplane from "../assets/airplan.png";
 import launcher from "../assets/launcher.png";
 import missile1 from "../assets/Missile04N.png";
-import Player, { StrayPlane } from "../entities/entities";
+import applyFrustumCulling from "../helpers/frustumCulling";
+import Player, { StrayPlane } from "../helpers/entities";
 
 class GamePlay extends Phaser.Scene {
   constructor() {
@@ -51,7 +52,7 @@ class GamePlay extends Phaser.Scene {
     this.player = new Player(
       this,
       this.game.config.width / 2.5,
-      this.game.config.height * 0.85,
+      this.game.config.height * 0.9,
       "rocketLauncher"
     );
 
@@ -75,6 +76,8 @@ class GamePlay extends Phaser.Scene {
       );
       this.player.setData("isShooting", false);
     }
+    applyFrustumCulling(this, this.playerMissiles.getChildren());
+    applyFrustumCulling(this, this.strayPlanes.getChildren());
   }
 }
 

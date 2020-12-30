@@ -65,7 +65,7 @@ class Player extends Entity {
 class PlayerMissile extends Entity {
   constructor(scene, x, y, key) {
     super(scene, x, y, key);
-    this.body.velocity.y = -200;
+    this.body.velocity.y = -500;
   }
 }
 
