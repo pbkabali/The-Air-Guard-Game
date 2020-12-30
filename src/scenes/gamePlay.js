@@ -1,6 +1,7 @@
 import bg from "../assets/full-bg.png";
 import airplane from "../assets/airplan.png";
-import { StrayPlane } from "./entities";
+import launcher from "../assets/launcher.png";
+import Player, { StrayPlane } from "../entities/entities";
 
 class GamePlay extends Phaser.Scene {
   constructor() {
@@ -10,6 +11,7 @@ class GamePlay extends Phaser.Scene {
   preload() {
     this.load.image("bg", bg);
     this.load.image("airplane", airplane);
+    this.load.image("rocketLauncher", launcher);
   }
 
   create() {
@@ -42,6 +44,25 @@ class GamePlay extends Phaser.Scene {
       callbackScope: this,
       loop: true,
     });
+
+    this.player = new Player(
+      this,
+      this.game.config.width / 2.5,
+      this.game.config.height * 0.85,
+      "rocketLauncher"
+    );
+
+    this.cursors = this.input.keyboard.createCursorKeys();
+  }
+
+  update() {
+    if (this.cursors.left.isDown) {
+      this.player.moveLeft();
+    } else if (this.cursors.right.isDown) {
+      this.player.moveRight();
+    } else {
+      this.player.stayStill();
+    }
   }
 }
 
