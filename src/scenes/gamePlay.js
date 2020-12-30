@@ -57,6 +57,17 @@ class GamePlay extends Phaser.Scene {
     );
 
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    this.physics.add.collider(
+      this.playerMissiles,
+      this.strayPlanes,
+      function (missile, plane) {
+        if (plane) {
+          plane.explode(true);
+          missile.destroy();
+        }
+      }
+    );
   }
 
   update() {
