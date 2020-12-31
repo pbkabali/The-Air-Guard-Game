@@ -32,7 +32,7 @@ export class StrayPlane extends Entity {
 class Player extends Entity {
   constructor(scene, x, y, key) {
     super(scene, x, y, key);
-    this.setData("speed", 160);
+    this.setData("speed", 200);
     this.setData("isShooting", false);
     this.setData("timerShootDelay", 50);
     this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
@@ -69,7 +69,7 @@ class Player extends Entity {
         missile.setScale(0.05);
         this.scene.playerMissiles.add(missile);
 
-        // this.scene.sfx.laser.play();
+        this.scene.sfx.laser.play();
         this.setData("timerShootTick", 0);
       }
     }
