@@ -14,6 +14,7 @@ export class StrayPlane extends Entity {
   }
 
   explode() {
+    this.scene.score += 1;
     this.setTexture("sprExplosion");
     this.body.setVelocity(-150, 0);
     this.setScale(1);
@@ -44,10 +45,6 @@ class Player extends Entity {
 
   moveRight() {
     this.body.velocity.x = this.getData("speed");
-  }
-
-  stayStill() {
-    this.body.velocity.x = 0;
   }
 
   update() {

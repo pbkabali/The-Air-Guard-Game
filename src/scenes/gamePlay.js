@@ -11,6 +11,7 @@ import Player, { StrayPlane } from "../helpers/entities";
 class GamePlay extends Phaser.Scene {
   constructor() {
     super({ key: "GamePlay" });
+    this.score = 0;
   }
 
   preload() {
@@ -89,6 +90,10 @@ class GamePlay extends Phaser.Scene {
         }
       }
     );
+
+    setTimeout(() => {
+      this.scene.start("GameOver", { score: this.score });
+    }, 30 * 1000);
   }
 
   update() {

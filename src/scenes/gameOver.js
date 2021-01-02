@@ -5,6 +5,10 @@ class GameOver extends Phaser.Scene {
     super({ key: "GameOver" });
   }
 
+  init(data) {
+    this.score = data.score;
+  }
+
   preload() {
     this.load.image("bg", bg);
   }
@@ -16,6 +20,21 @@ class GameOver extends Phaser.Scene {
       "bg"
     );
     bg.setScale(0.5);
+
+    this.displayScore = this.add.text(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.3,
+      `Score: ${this.score}`,
+      {
+        fontFamily: "monospace",
+        fontSize: 24,
+        fontStyle: "bold",
+        color: "#000",
+        align: "center",
+      }
+    );
+
+    this.displayScore.setOrigin(0.5);
   }
 }
 
