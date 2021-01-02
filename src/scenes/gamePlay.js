@@ -61,10 +61,10 @@ class GamePlay extends Phaser.Scene {
             this.game.config.height / 4
           ),
           "airplane",
-          200,
-          500
+          400,
+          700
         );
-        strayPlane.setScale(Phaser.Math.Between(5, 20) * 0.05);
+        strayPlane.setScale(Phaser.Math.Between(5, 10) * 0.05);
         this.strayPlanes.add(strayPlane);
       },
       callbackScope: this,
@@ -75,7 +75,8 @@ class GamePlay extends Phaser.Scene {
       this,
       this.game.config.width / 2.5,
       this.game.config.height * 0.9,
-      "rocketLauncher"
+      "rocketLauncher",
+      20
     );
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -91,6 +92,21 @@ class GamePlay extends Phaser.Scene {
       }
     );
 
+    this.reloadMsg = this.add.text(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.6,
+      "",
+      {
+        fontFamily: "monospace",
+        fontSize: 30,
+        fontStyle: "bold",
+        color: "red",
+        align: "center",
+      }
+    );
+
+    this.reloadMsg.setOrigin(0.5);
+
     setTimeout(() => {
       this.scene.start("GameOver", { score: this.score });
     }, 30 * 1000);
@@ -103,7 +119,6 @@ class GamePlay extends Phaser.Scene {
     } else if (this.cursors.right.isDown) {
       this.player.moveRight();
     }
-
     if (this.cursors.up.isDown) {
       this.player.setData("isShooting", true);
     } else {

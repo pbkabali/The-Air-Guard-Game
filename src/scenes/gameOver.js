@@ -24,10 +24,10 @@ class GameOver extends Phaser.Scene {
     this.displayScore = this.add.text(
       this.game.config.width * 0.5,
       this.game.config.height * 0.3,
-      `Score: ${this.score}`,
+      `Your Score: ${this.score}`,
       {
         fontFamily: "monospace",
-        fontSize: 24,
+        fontSize: 30,
         fontStyle: "bold",
         color: "#000",
         align: "center",

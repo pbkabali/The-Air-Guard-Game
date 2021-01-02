@@ -32,9 +32,11 @@ export class StrayPlane extends Entity {
 }
 
 class Player extends Entity {
-  constructor(scene, x, y, key) {
+  constructor(scene, x, y, key, rounds) {
     super(scene, x, y, key);
+    this.rounds = rounds;
     this.setData("speed", 200);
+    this.setData("rounds", rounds);
     this.setData("isShooting", false);
     this.setData("timerShootDelay", 50);
     this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
@@ -54,22 +56,34 @@ class Player extends Entity {
     this.x = Phaser.Math.Clamp(this.x, 0, this.scene.game.config.width);
     this.y = Phaser.Math.Clamp(this.y, 0, this.scene.game.config.height);
 
-    if (this.getData("isShooting")) {
-      if (this.getData("timerShootTick") < this.getData("timerShootDelay")) {
-        this.setData("timerShootTick", this.getData("timerShootTick") + 1);
-      } else {
-        const missile = new PlayerMissile(
-          this.scene,
-          this.x,
-          this.y,
-          "playerMissile"
-        );
-        missile.setScale(0.05);
-        this.scene.playerMissiles.add(missile);
+    if (this.getData("rounds") === this.rounds) {
+      this.scene.reloadMsg.setText("");
+    }
 
-        this.scene.sfx.laser.play();
-        this.setData("timerShootTick", 0);
+    if (this.getData("rounds") > 0) {
+      if (this.getData("isShooting")) {
+        if (this.getData("timerShootTick") < this.getData("timerShootDelay")) {
+          this.setData("timerShootTick", this.getData("timerShootTick") + 1);
+        } else {
+          const missile = new PlayerMissile(
+            this.scene,
+            this.x,
+            this.y,
+            "playerMissile"
+          );
+          missile.setScale(0.05);
+          this.scene.playerMissiles.add(missile);
+
+          this.scene.sfx.laser.play();
+          this.setData("timerShootTick", 0);
+          this.setData("rounds", this.getData("rounds") - 1);
+        }
       }
+    } else {
+      this.scene.reloadMsg.setText("RELOADING ROUNDS...");
+      setTimeout(() => {
+        this.setData("rounds", this.rounds);
+      }, 3 * 1000);
     }
   }
 }
@@ -77,7 +91,7 @@ class Player extends Entity {
 class PlayerMissile extends Entity {
   constructor(scene, x, y, key) {
     super(scene, x, y, key);
-    this.body.velocity.y = -500;
+    this.body.velocity.y = -300;
   }
 }
 
