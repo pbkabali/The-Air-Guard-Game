@@ -14,6 +14,7 @@ export class StrayPlane extends Entity {
   }
 
   explode() {
+    this.scene.strayPlanes.remove(this);
     this.scene.score += 1;
     this.setTexture("sprExplosion");
     this.body.setVelocity(-150, 0);
