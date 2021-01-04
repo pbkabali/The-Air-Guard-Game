@@ -159,6 +159,7 @@ class GamePlay extends Phaser.Scene {
     }
     applyFrustumCulling(this, this.playerMissiles.getChildren());
     applyFrustumCulling(this, this.strayPlanes.getChildren());
+    applyFrustumCulling(this, this.enemyMissiles.getChildren());
   }
 }
 
