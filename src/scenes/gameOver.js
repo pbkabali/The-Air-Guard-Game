@@ -27,7 +27,7 @@ class GameOver extends Phaser.Scene {
     this.add
       .text(
         this.game.config.width * 0.5,
-        this.game.config.height * 0.2,
+        this.game.config.height * 0.15,
         "Game Over",
         {
           fontFamily: "monospace",
@@ -42,7 +42,7 @@ class GameOver extends Phaser.Scene {
     this.add
       .text(
         this.game.config.width * 0.5,
-        this.game.config.height * 0.3,
+        this.game.config.height * 0.2,
         `Your Score: ${this.score}`,
         {
           fontFamily: "monospace",
@@ -56,11 +56,24 @@ class GameOver extends Phaser.Scene {
 
     this.add.text(
       this.game.config.width * 0.5,
-      this.game.config.height * 0.4,
+      this.game.config.height * 0.27,
       "Top Scores",
       {
         fontFamily: "monospace",
         fontSize: 36,
+        fontStyle: "bold",
+        color: "#000",
+        align: "center",
+      }
+    );
+
+    const topScoresLoader = this.add.text(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.5,
+      "Fetching...",
+      {
+        fontFamily: "monospace",
+        fontSize: 24,
         fontStyle: "bold",
         color: "#000",
         align: "center",
@@ -98,8 +111,9 @@ class GameOver extends Phaser.Scene {
           );
           const topScores =
             sortedScores.length > 5 ? sortedScores.slice(0, 5) : sortedScores;
-          let verticlePosition = 0.5;
+          let verticlePosition = 0.35;
           let position = 1;
+          topScoresLoader.setText("");
           topScores.forEach((obj) => {
             this.add.text(
               this.game.config.width * 0.5,
@@ -118,6 +132,31 @@ class GameOver extends Phaser.Scene {
           });
         });
     })();
+
+    this.restart = this.add.text(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.65,
+      "< PLAY AGAIN >",
+      {
+        fontFamily: "monospace",
+        fontSize: 30,
+        fontStyle: "bold",
+        color: "red",
+        align: "center",
+      }
+    );
+
+    this.restart.setOrigin(0.5);
+
+    this.restart.setInteractive();
+
+    this.restart.on(
+      "pointerup",
+      function () {
+        this.scene.start("GamePlay");
+      },
+      this
+    );
   }
 }
 

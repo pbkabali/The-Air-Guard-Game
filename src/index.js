@@ -2,7 +2,7 @@ import MainMenu from "./scenes/mainMenu";
 import GamePlay from "./scenes/gamePlay";
 import GameOver from "./scenes/gameOver";
 
-var config = {
+const config = {
   type: Phaser.AUTO,
   width: window.innerWidth,
   height: window.innerHeight,

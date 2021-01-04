@@ -59,6 +59,7 @@ class Player extends Entity {
       "animationcomplete",
       function () {
         this.scene.scene.start("GameOver", { score: this.scene.score });
+        this.scene.score = 0;
       },
       this
     );
