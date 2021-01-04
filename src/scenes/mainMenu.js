@@ -33,6 +33,33 @@ class MainMenu extends Phaser.Scene {
 
     this.title.setOrigin(0.5);
 
+    const player = prompt("Please enter your name", "Guest");
+
+    if (
+      player === null ||
+      player.toLowerCase === "name" ||
+      player.trim() === ""
+    ) {
+      localStorage.setItem("playerName", "Guest");
+    } else {
+      localStorage.setItem("playerName", player);
+    }
+
+    this.playerName = this.add.text(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.3,
+      `Hi ${localStorage.getItem("playerName")}`,
+      {
+        fontFamily: "monospace",
+        fontSize: 24,
+        fontStyle: "bold",
+        color: "#000",
+        align: "center",
+      }
+    );
+
+    this.playerName.setOrigin(0.5);
+
     this.intro = this.add.text(
       this.game.config.width * 0.5,
       this.game.config.height * 0.4,
