@@ -80,14 +80,18 @@ class GamePlay extends Phaser.Scene {
         const bombingPlane = this.strayPlanes.getChildren()[
           Phaser.Math.Between(0, this.strayPlanes.getChildren().length - 1)
         ];
+        const dx = this.player.x - bombingPlane.x;
+        const dy = this.player.y - bombingPlane.y;
+        const angle = Math.atan2(dy, dx);
+        const speed = 70;
 
         const missile = new Missile(
           this,
           bombingPlane.x,
           bombingPlane.y,
           "enemyMissile",
-          0,
-          100
+          Math.cos(angle) * speed,
+          Math.sin(angle) * speed
         );
         missile.setScale(0.5);
         this.enemyMissiles.add(missile);
