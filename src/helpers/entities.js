@@ -50,6 +50,20 @@ class Player extends Entity {
     this.body.velocity.x = this.getData("speed");
   }
 
+  explode() {
+    this.setTexture("sprExplosion");
+    this.setScale(2);
+    this.play("sprExplosion");
+    this.scene.sfx.explosion.play();
+    this.on(
+      "animationcomplete",
+      function () {
+        this.scene.scene.start("GameOver", { score: this.scene.score });
+      },
+      this
+    );
+  }
+
   update() {
     this.body.setVelocity(0, 0);
 

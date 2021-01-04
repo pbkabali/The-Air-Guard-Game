@@ -1,8 +1,8 @@
 import bg from "../assets/full-bg.png";
 import airplane from "../assets/airplane.png";
 import launcher from "../assets/launcher.png";
-import missile1 from "../assets/Missile04N.png";
-import missile2 from "../assets/bomb.png";
+import missile from "../assets/Missile04N.png";
+import bomb from "../assets/bomb.png";
 import sprExplosion from "../assets/sprExplosion.png";
 import sndExplode from "../assets/sndExplode.wav";
 import sndMissile from "../assets/sndMissile.wav";
@@ -23,8 +23,8 @@ class GamePlay extends Phaser.Scene {
     this.load.image("bg", bg);
     this.load.image("airplane", airplane);
     this.load.image("rocketLauncher", launcher);
-    this.load.image("playerMissile", missile1);
-    this.load.image("enemyMissile", missile2);
+    this.load.image("playerMissile", missile);
+    this.load.image("enemyBomb", bomb);
     this.load.audio("sndExplode", sndExplode);
     this.load.audio("sndMissile", sndMissile);
   }
@@ -51,7 +51,7 @@ class GamePlay extends Phaser.Scene {
 
     this.strayPlanes = this.add.group();
     this.playerMissiles = this.add.group();
-    this.enemyMissiles = this.add.group();
+    this.enemyBombs = this.add.group();
 
     this.time.addEvent({
       delay: 500,
@@ -89,12 +89,12 @@ class GamePlay extends Phaser.Scene {
           this,
           bombingPlane.x,
           bombingPlane.y,
-          "enemyMissile",
+          "enemyBomb",
           Math.cos(angle) * speed,
           Math.sin(angle) * speed
         );
         missile.setScale(0.5);
-        this.enemyMissiles.add(missile);
+        this.enemyBombs.add(missile);
       },
       callbackScope: this,
       loop: true,
@@ -121,6 +121,17 @@ class GamePlay extends Phaser.Scene {
       }
     );
 
+    this.physics.add.collider(
+      this.enemyBombs,
+      this.player,
+      function (bomb, player) {
+        if (player) {
+          player.explode();
+          bomb.destroy();
+        }
+      }
+    );
+
     this.reloadMsg = this.add.text(
       this.game.config.width * 0.5,
       this.game.config.height * 0.6,
@@ -136,9 +147,9 @@ class GamePlay extends Phaser.Scene {
 
     this.reloadMsg.setOrigin(0.5);
 
-    setTimeout(() => {
-      this.scene.start("GameOver", { score: this.score });
-    }, 30 * 1000);
+    // setTimeout(() => {
+
+    // }, 30 * 1000);
   }
 
   update() {
@@ -159,7 +170,7 @@ class GamePlay extends Phaser.Scene {
     }
     applyFrustumCulling(this, this.playerMissiles.getChildren());
     applyFrustumCulling(this, this.strayPlanes.getChildren());
-    applyFrustumCulling(this, this.enemyMissiles.getChildren());
+    applyFrustumCulling(this, this.enemyBombs.getChildren());
   }
 }
 

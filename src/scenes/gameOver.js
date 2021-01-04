@@ -28,6 +28,21 @@ class GameOver extends Phaser.Scene {
       .text(
         this.game.config.width * 0.5,
         this.game.config.height * 0.2,
+        "Game Over",
+        {
+          fontFamily: "monospace",
+          fontSize: 40,
+          fontStyle: "bold",
+          color: "red",
+          align: "center",
+        }
+      )
+      .setOrigin(0.5);
+
+    this.add
+      .text(
+        this.game.config.width * 0.5,
+        this.game.config.height * 0.3,
         `Your Score: ${this.score}`,
         {
           fontFamily: "monospace",
@@ -41,7 +56,7 @@ class GameOver extends Phaser.Scene {
 
     this.add.text(
       this.game.config.width * 0.5,
-      this.game.config.height * 0.3,
+      this.game.config.height * 0.4,
       "Top Scores",
       {
         fontFamily: "monospace",
@@ -83,7 +98,7 @@ class GameOver extends Phaser.Scene {
           );
           const topScores =
             sortedScores.length > 5 ? sortedScores.slice(0, 5) : sortedScores;
-          let verticlePosition = 0.4;
+          let verticlePosition = 0.5;
           let position = 1;
           topScores.forEach((obj) => {
             this.add.text(
