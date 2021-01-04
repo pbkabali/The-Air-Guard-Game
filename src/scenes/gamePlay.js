@@ -83,9 +83,9 @@ class GamePlay extends Phaser.Scene {
         const dx = this.player.x - bombingPlane.x;
         const dy = this.player.y - bombingPlane.y;
         const angle = Math.atan2(dy, dx);
-        const speed = 70;
+        const speed = 200;
 
-        const missile = new Missile(
+        const bomb = new Missile(
           this,
           bombingPlane.x,
           bombingPlane.y,
@@ -93,8 +93,7 @@ class GamePlay extends Phaser.Scene {
           Math.cos(angle) * speed,
           Math.sin(angle) * speed
         );
-        missile.setScale(0.5);
-        this.enemyBombs.add(missile);
+        this.enemyBombs.add(bomb);
       },
       callbackScope: this,
       loop: true,
@@ -146,10 +145,6 @@ class GamePlay extends Phaser.Scene {
     );
 
     this.reloadMsg.setOrigin(0.5);
-
-    // setTimeout(() => {
-
-    // }, 30 * 1000);
   }
 
   update() {
