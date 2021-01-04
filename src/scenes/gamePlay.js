@@ -109,6 +109,9 @@ class GamePlay extends Phaser.Scene {
     );
 
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.keySpace = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.SPACE,
+    );
 
     this.physics.add.collider(
       this.playerMissiles,
@@ -151,7 +154,7 @@ class GamePlay extends Phaser.Scene {
     } else if (this.cursors.right.isDown) {
       this.player.moveRight();
     }
-    if (this.cursors.up.isDown) {
+    if (this.keySpace.isDown) {
       this.player.setData('isShooting', true);
     } else {
       this.player.setData(
