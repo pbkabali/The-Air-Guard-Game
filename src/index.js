@@ -1,14 +1,17 @@
-import MainMenu from "./scenes/mainMenu";
-import GamePlay from "./scenes/gamePlay";
-import GameOver from "./scenes/gameOver";
+/* eslint-disable no-unused-vars */
+
+import Phaser from 'phaser';
+import MainMenu from './scenes/mainMenu';
+import GamePlay from './scenes/gamePlay';
+import GameOver from './scenes/gameOver';
 
 const config = {
   type: Phaser.AUTO,
   width: window.innerWidth,
   height: window.innerHeight,
-  backgroundColor: "black",
+  backgroundColor: 'black',
   physics: {
-    default: "arcade",
+    default: 'arcade',
     arcade: {
       gravity: { x: 0, y: 0 },
     },
@@ -19,3 +22,5 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+/* eslint-enable no-unused-vars */
