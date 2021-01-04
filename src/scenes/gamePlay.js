@@ -2,11 +2,12 @@ import bg from "../assets/full-bg.png";
 import airplane from "../assets/airplane.png";
 import launcher from "../assets/launcher.png";
 import missile1 from "../assets/Missile04N.png";
+import missile2 from "../assets/bomb.png";
 import sprExplosion from "../assets/sprExplosion.png";
 import sndExplode from "../assets/sndExplode.wav";
 import sndMissile from "../assets/sndMissile.wav";
 import applyFrustumCulling from "../helpers/frustumCulling";
-import Player, { StrayPlane } from "../helpers/entities";
+import Player, { StrayPlane, Missile } from "../helpers/entities";
 
 class GamePlay extends Phaser.Scene {
   constructor() {
@@ -23,6 +24,7 @@ class GamePlay extends Phaser.Scene {
     this.load.image("airplane", airplane);
     this.load.image("rocketLauncher", launcher);
     this.load.image("playerMissile", missile1);
+    this.load.image("enemyMissile", missile2);
     this.load.audio("sndExplode", sndExplode);
     this.load.audio("sndMissile", sndMissile);
   }
@@ -49,10 +51,11 @@ class GamePlay extends Phaser.Scene {
 
     this.strayPlanes = this.add.group();
     this.playerMissiles = this.add.group();
+    this.enemyMissiles = this.add.group();
 
     this.time.addEvent({
       delay: 500,
-      callback: function () {
+      callback: () => {
         const strayPlane = new StrayPlane(
           this,
           this.game.config.width,
@@ -66,6 +69,28 @@ class GamePlay extends Phaser.Scene {
         );
         strayPlane.setScale(Phaser.Math.Between(5, 10) * 0.05);
         this.strayPlanes.add(strayPlane);
+      },
+      callbackScope: this,
+      loop: true,
+    });
+
+    this.time.addEvent({
+      delay: 5000,
+      callback: () => {
+        const bombingPlane = this.strayPlanes.getChildren()[
+          Phaser.Math.Between(0, this.strayPlanes.getChildren().length - 1)
+        ];
+
+        const missile = new Missile(
+          this,
+          bombingPlane.x,
+          bombingPlane.y,
+          "enemyMissile",
+          0,
+          100
+        );
+        missile.setScale(0.5);
+        this.enemyMissiles.add(missile);
       },
       callbackScope: this,
       loop: true,

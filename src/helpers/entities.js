@@ -65,11 +65,13 @@ class Player extends Entity {
         if (this.getData("timerShootTick") < this.getData("timerShootDelay")) {
           this.setData("timerShootTick", this.getData("timerShootTick") + 1);
         } else {
-          const missile = new PlayerMissile(
+          const missile = new Missile(
             this.scene,
             this.x,
             this.y,
-            "playerMissile"
+            "playerMissile",
+            0,
+            -300
           );
           missile.setScale(0.05);
           this.scene.playerMissiles.add(missile);
@@ -88,10 +90,11 @@ class Player extends Entity {
   }
 }
 
-class PlayerMissile extends Entity {
-  constructor(scene, x, y, key) {
+export class Missile extends Entity {
+  constructor(scene, x, y, key, velocityX, velocityY) {
     super(scene, x, y, key);
-    this.body.velocity.y = -300;
+    this.body.velocity.x = velocityX;
+    this.body.velocity.y = velocityY;
   }
 }
 
