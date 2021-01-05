@@ -6,7 +6,7 @@
 
 ![screenshot](./app_screenshot.png)
 
-This is a game that engages the player as a guard who shoots down planes in thier airspace with missiles while dodging
+This is a game that engages the player as a guard who shoots down planes in their airspace with missiles while dodging
 dropped bombs.
 
 ## Built With
@@ -15,6 +15,7 @@ dropped bombs.
 - CSS3,
 - Javascript
 - Webpack
+- Jest
 - Phaser
 
 ## Live Demo
@@ -41,7 +42,7 @@ Run `npm install` to get all the dependencies.
 
 Run `npm run build` for one time build of bundle after changes.
 
-Run `npm run watch` to run webpack build in watch mode.
+Run `npm run watch` to run Webpack build in watch mode.
 
 Run `npm start` to start the web-server.
 
@@ -55,14 +56,26 @@ Run `npm test` from the project root directory.
 
 ## Game Playing Instructions
 
-- The game requests for the player name on satrt-up. If a name other than `Guest` is provided, the player score will be included in the leaderboard rankings when the game is over. If a name is not provided, the player will be named `Guest` by default.
-- Click the `start game` button to enter the main game-play scene.
-- Use the left and right arrow-keys to move the player horizontally.
+- The first screen of the game shows the title and a request for the player to enter their name. If a name other than `Guest` is provided, the player score will be included in the leaderboard rankings when the game is over. If a name is not provided, the player will be named `Guest` by default. Click `Enter` to move to the menu screen.
+
+![screenshot](./app_screenshot_2.png)
+
+- The menu screen shows some simple instructions on how to play the game. Click the `Start Game` button to enter the main game-play scene.
+
+![screenshot](./app_screenshot_3.png)
+
+Once inside the main screen, follow the instructions below to play the game:
+
+![screenshot](./app_screenshot.png)
+
+- Use the left and right arrow keys to move the player horizontally.
 - Use the space-key to shoot missiles towards the enemy planes.
 - Watch out for random bombs that come from the enemy planes.
 - Accumulate points to get the maximum possible score by shooting as many planes as possible.
-- Note that the player's shooting rounds can run out and sometime is needed to reload.
-- The game ends when the player is hit by a bomb.
+- Note that the player's shooting rounds can run out and some time is needed to reload.
+- The game ends when the player is hit by a bomb and it takes you to the game over screen shown below. Here, your score is shown plus the top-five scores to-date. If you provided a name, your score will also be saved on the leaderboard.
+
+![screenshot](./app_screenshot_4.png)
 
 ## Authors
 
@@ -85,6 +98,7 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - Microverse Team 140 (The Cupids)
+- [OpenGameArt](https://opengameart.org/)
 
 ## 📝 License
 

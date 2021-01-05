@@ -1,4 +1,4 @@
-import Entity from "./entitity";
+import Entity from './entitity';
 
 class Missile extends Entity {
   constructor(scene, x, y, key, velocityX, velocityY) {

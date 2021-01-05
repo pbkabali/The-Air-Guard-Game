@@ -1,4 +1,5 @@
-import Entity from "./entitity";
+import Phaser from 'phaser';
+import Entity from './entitity';
 
 class StrayPlane extends Entity {
   constructor(scene, x, y, key, minSpeed, maxSpeed) {
@@ -9,17 +10,17 @@ class StrayPlane extends Entity {
   explode() {
     this.scene.strayPlanes.remove(this);
     this.scene.score += 1;
-    this.setTexture("sprExplosion");
+    this.setTexture('sprExplosion');
     this.body.setVelocity(-150, 0);
     this.setScale(1);
-    this.play("sprExplosion");
+    this.play('sprExplosion');
     this.scene.sfx.explosion.play();
     this.on(
-      "animationcomplete",
+      'animationcomplete',
       () => {
         this.destroy();
       },
-      this
+      this,
     );
   }
 }
