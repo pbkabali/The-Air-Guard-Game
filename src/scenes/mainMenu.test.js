@@ -1,8 +1,8 @@
 import Phaser from "phaser";
-import GamePlay from "./gamePlay";
+import MainMenu from "./mainMenu";
 
-describe("Game Play scene", () => {
-  const scene = new GamePlay();
+describe("Main Menu scene", () => {
+  const scene = new MainMenu();
   test("inherits from Phaser class", () => {
     expect(scene instanceof Phaser.Scene).toBeTruthy();
   });

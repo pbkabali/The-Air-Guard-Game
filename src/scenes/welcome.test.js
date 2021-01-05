@@ -1,8 +1,8 @@
 import Phaser from "phaser";
-import GamePlay from "./gamePlay";
+import Welcome from "./welcome";
 
-describe("Game Play scene", () => {
-  const scene = new GamePlay();
+describe("Welcome scene", () => {
+  const scene = new Welcome();
   test("inherits from Phaser class", () => {
     expect(scene instanceof Phaser.Scene).toBeTruthy();
   });
