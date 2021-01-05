@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import bg from "../assets/full-bg.png";
+import getScores, { postScore } from "../helpers/apiCalls";
 
 class GameOver extends Phaser.Scene {
   constructor() {
@@ -81,58 +82,39 @@ class GameOver extends Phaser.Scene {
       }
     );
 
-    const postScore = (score) => {
-      fetch(`${this.baseURL}/games/${this.gameID}/scores/`, {
-        mode: "cors",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(score),
-      });
-    };
-
-    (() => {
-      fetch(`${this.baseURL}/games/${this.gameID}/scores/`, {
-        mode: "cors",
-      })
-        .then((response) => response.json())
-        .then((response) => {
-          const scores = response.result;
-          const currentScore = {
-            user: localStorage.getItem("playerName"),
-            score: this.score,
-          };
-          scores.push(currentScore);
-          if (currentScore.user !== "Guest") {
-            postScore(currentScore);
+    getScores(this.baseURL, this.gameID).then((response) => {
+      const scores = response.result;
+      const currentScore = {
+        user: localStorage.getItem("playerName"),
+        score: this.score,
+      };
+      scores.push(currentScore);
+      if (currentScore.user !== "Guest") {
+        postScore(currentScore, this.baseURL, this.gameID);
+      }
+      const sortedScores = scores.sort((a, b) => (a.score >= b.score ? -1 : 1));
+      const topScores =
+        sortedScores.length > 5 ? sortedScores.slice(0, 5) : sortedScores;
+      let verticlePosition = 0.35;
+      let position = 1;
+      topScoresLoader.setText("");
+      topScores.forEach((obj) => {
+        this.add.text(
+          this.game.config.width * 0.5,
+          this.game.config.height * verticlePosition,
+          `${position}. ${obj.user} ${obj.score}`,
+          {
+            fontFamily: "monospace",
+            fontSize: 24,
+            fontStyle: "bold",
+            color: obj.user === currentScore.user ? "red" : "#000",
+            align: "center",
           }
-          const sortedScores = scores.sort((a, b) =>
-            a.score >= b.score ? -1 : 1
-          );
-          const topScores =
-            sortedScores.length > 5 ? sortedScores.slice(0, 5) : sortedScores;
-          let verticlePosition = 0.35;
-          let position = 1;
-          topScoresLoader.setText("");
-          topScores.forEach((obj) => {
-            this.add.text(
-              this.game.config.width * 0.5,
-              this.game.config.height * verticlePosition,
-              `${position}. ${obj.user} ${obj.score}`,
-              {
-                fontFamily: "monospace",
-                fontSize: 24,
-                fontStyle: "bold",
-                color: obj.user === currentScore.user ? "red" : "#000",
-                align: "center",
-              }
-            );
-            verticlePosition += 0.05;
-            position += 1;
-          });
-        });
-    })();
+        );
+        verticlePosition += 0.05;
+        position += 1;
+      });
+    });
 
     this.restart = this.add.text(
       this.game.config.width * 0.5,

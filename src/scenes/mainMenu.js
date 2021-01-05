@@ -53,7 +53,7 @@ class MainMenu extends Phaser.Scene {
       this.game.config.width * 0.5,
       this.game.config.height * 0.4,
       `Shoot down as many stray planes as you can to protect our airspace.
-      Use the left and right arrow-keys to move the player and the up arrow-key to shoot missiles`,
+      Use the left and right arrow-keys to move the player and the space-key to shoot missiles`,
       {
         fontFamily: "monospace",
         fontSize: 16,
