@@ -1,9 +1,10 @@
+/* eslint-disable no-alert */
 import Phaser from "phaser";
 import bg from "../assets/full-bg.png";
 
-class MainMenu extends Phaser.Scene {
+class Welcome extends Phaser.Scene {
   constructor() {
-    super({ key: "MainMenu" });
+    super({ key: "Welcome" });
   }
 
   preload() {
@@ -19,10 +20,25 @@ class MainMenu extends Phaser.Scene {
 
     bg.setScale(0.5);
 
+    this.add
+      .text(
+        this.game.config.width * 0.5,
+        this.game.config.height * 0.1,
+        "Welcome to",
+        {
+          fontFamily: "monospace",
+          fontSize: 38,
+          fontStyle: "bold",
+          color: "#000",
+          align: "center",
+        }
+      )
+      .setOrigin(0.5);
+
     this.title = this.add.text(
       this.game.config.width * 0.5,
       this.game.config.height * 0.2,
-      "THE AIR GUARD",
+      "THE AIR GUARD GAME",
       {
         fontFamily: "monospace",
         fontSize: 48,
@@ -34,26 +50,13 @@ class MainMenu extends Phaser.Scene {
 
     this.title.setOrigin(0.5);
 
-    this.playerName = this.add.text(
-      this.game.config.width * 0.5,
-      this.game.config.height * 0.3,
-      `Hi ${localStorage.getItem("playerName")}`,
-      {
-        fontFamily: "monospace",
-        fontSize: 24,
-        fontStyle: "bold",
-        color: "#000",
-        align: "center",
-      }
-    );
-
-    this.playerName.setOrigin(0.5);
+    this.nameInput = document.getElementById("player-name");
+    this.nameInput.classList.toggle("hidden");
 
     this.intro = this.add.text(
       this.game.config.width * 0.5,
-      this.game.config.height * 0.4,
-      `Shoot down as many stray planes as you can to protect our airspace.
-      Use the left and right arrow-keys to move the player and the up arrow-key to shoot missiles`,
+      this.game.config.height * 0.45,
+      "OR Leave it blank to play as GUEST",
       {
         fontFamily: "monospace",
         fontSize: 16,
@@ -68,7 +71,7 @@ class MainMenu extends Phaser.Scene {
     this.start = this.add.text(
       this.game.config.width * 0.5,
       this.game.config.height * 0.6,
-      "START GAME >",
+      "ENTER >",
       {
         fontFamily: "monospace",
         fontSize: 30,
@@ -85,11 +88,24 @@ class MainMenu extends Phaser.Scene {
     this.start.on(
       "pointerup",
       () => {
-        this.scene.start("GamePlay");
+        const player = this.nameInput.value;
+        if (
+          player === null ||
+          player.toLowerCase === "name" ||
+          player.trim() === ""
+        ) {
+          localStorage.setItem("playerName", "Guest");
+        } else {
+          localStorage.setItem("playerName", player);
+        }
+        this.nameInput.classList.toggle("hidden");
+        this.scene.start("MainMenu");
       },
       this
     );
   }
 }
 
-export default MainMenu;
+export default Welcome;
+
+/* eslint-disable no-alert */

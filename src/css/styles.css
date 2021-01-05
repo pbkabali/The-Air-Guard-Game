@@ -1,0 +1,19 @@
+.user-name {
+  position: absolute;
+  width: 20vw;
+  left: 40vw;
+  top: 30vh;
+  text-align: center;
+  background-color: #b0df4d;
+  color: rgb(223, 148, 148);
+  border: 4px solid #81b214;
+  border-radius: 30px;
+  height: 50px;
+  font-size: 30px;
+  font-weight: bolder;
+  outline: none;
+}
+
+.hidden {
+  display: none;
+}
