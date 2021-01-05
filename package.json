@@ -1,7 +1,7 @@
 {
   "name": "js-capstone",
   "version": "1.0.0",
-  "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
+  "description": "A shooting game built with the Phaser framework",
   "main": "index.js",
   "scripts": {
     "start": "http-server dist -c-1",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pbkabali/JS-Capstone.git"
+    "url": "git+https://github.com/pbkabali/The-Air-Guard-Game.git"
   },
   "author": "Paul Balitema Kabali",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pbkabali/JS-Capstone/issues"
+    "url": "https://github.com/pbkabali/The-Air-Guard-Game/issues"
   },
-  "homepage": "https://github.com/pbkabali/JS-Capstone#readme",
+  "homepage": "https://github.com/pbkabali/The-Air-Guard-Game#readme",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
@@ -32,6 +32,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "file-loader": "^6.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "image-webpack-loader": "^7.0.1",
     "jest": "^26.6.3",
     "remove-files-webpack-plugin": "^1.4.4",
@@ -48,5 +49,10 @@
     "jsdom": "^16.4.0",
     "phaser": "^3.50.0",
     "http-server": "^0.12.3"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      ".+\\.(wav|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    }
   }
 }
