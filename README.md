@@ -1,65 +1,95 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# The Air-Guard Game
 
-> One paragraph statement about the project.
+> A multi-scene turn-based Role-Playing-Game that runs in a browser
 
 ![screenshot](./app_screenshot.png)
 
-Additional description about the project and its features.
+This is a game that engages the player as a guard who shoots down planes in their airspace with missiles while dodging
+dropped bombs.
 
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
+- HTML5,
+- CSS3,
+- Javascript
+- Webpack
+- Jest
+- Phaser
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
-
+[Live Demo Link](https://pbkabali.github.io/The-Air-Guard-Game/)
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running in development mode, follow these simple steps.
 
 ### Prerequisites
 
+- Node.js
+- Browser
+- Terminal
+
 ### Setup
+
+Clone the project from [here](https://github.com/pbkabali/The-Air-Guard-Game/tree/air-guard-game)
 
 ### Install
 
+Run `npm install` to get all the dependencies.
+
+Run `npm run build` for one time build of bundle after changes.
+
+Run `npm run watch` to run Webpack build in watch mode.
+
+Run `npm start` to start the web-server.
+
 ### Usage
+
+Go to `https://localhost:8080` in your browser.
 
 ### Run tests
 
-### Deployment
+Run `npm test` from the project root directory.
 
+## Game Playing Instructions
 
+- The first screen of the game shows the title and a request for the player to enter their name. If a name other than `Guest` is provided, the player score will be included in the leaderboard rankings when the game is over. If a name is not provided, the player will be named `Guest` by default. Click `Enter` to move to the menu screen.
+
+![screenshot](./app_screenshot_2.png)
+
+- The menu screen shows some simple instructions on how to play the game. Click the `Start Game` button to enter the main game-play scene.
+
+![screenshot](./app_screenshot_3.png)
+
+Once inside the main screen, follow the instructions below to play the game:
+
+![screenshot](./app_screenshot.png)
+
+- Use the left and right arrow keys to move the player horizontally.
+- Use the space-key to shoot missiles towards the enemy planes.
+- Watch out for random bombs that come from the enemy planes.
+- Accumulate points to get the maximum possible score by shooting as many planes as possible.
+- Note that the player's shooting rounds can run out and some time is needed to reload.
+- The game ends when the player is hit by a bomb and it takes you to the game over screen shown below. Here, your score is shown plus the top-five scores to-date. If you provided a name, your score will also be saved on the leaderboard.
+
+![screenshot](./app_screenshot_4.png)
 
 ## Authors
 
-👤 **Author1**
+👤 **Paul Balitema Kabali**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
-
-👤 **Author2**
-
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github: [@pbkabali](https://github.com/pbkabali)
+- Twitter: [@pbkabali](https://twitter.com/pbkabali)
+- Linkedin: [engineerbpk](https://linkedin.com/in/engineerbpk)
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/pbkabali/The-Air-Guard-Game/issues).
 
 ## Show your support
 
@@ -67,10 +97,9 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Microverse Team 140 (The Cupids)
+- [OpenGameArt](https://opengameart.org/)
 
 ## 📝 License
 
-This project is [MIT](lic.url) licensed.
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.

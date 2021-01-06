@@ -1,0 +1,58 @@
+{
+  "name": "js-capstone",
+  "version": "1.0.0",
+  "description": "A shooting game built with the Phaser framework",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server dist -c-1",
+    "test": "jest --verbose",
+    "watch": "webpack --watch",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbkabali/The-Air-Guard-Game.git"
+  },
+  "author": "Paul Balitema Kabali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pbkabali/The-Air-Guard-Game/issues"
+  },
+  "homepage": "https://github.com/pbkabali/The-Air-Guard-Game#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "autoprefixer": "^10.0.4",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "file-loader": "^6.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "image-webpack-loader": "^7.0.1",
+    "jest": "^26.6.3",
+    "remove-files-webpack-plugin": "^1.4.4",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.17.2",
+    "webpack": "^5.8.0",
+    "webpack-cli": "^4.2.0"
+  },
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "jsdom": "^16.4.0",
+    "phaser": "^3.50.0",
+    "http-server": "^0.12.3"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      ".+\\.(wav|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    }
+  }
+}
